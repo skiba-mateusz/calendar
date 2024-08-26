@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar App</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="calendar">
+      <header class="calendar__header">
+        <h1 class="calendar__month" aria-live="polite">August 2024</h1>
+        <nav class="calendar__nav" aria-label="Calendar navigation">
+          <button
+            class="calendar__btn calendar__btn--prev btn btn--primary btn--icon"
+          >
+            <i class="bx bx-chevron-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous week</span>
+          </button>
+          <button class="calendar__btn calendar__btn--today btn btn--primary">
+            Today
+          </button>
+          <button
+            class="calendar__btn calendar__btn--next btn btn--primary btn--icon"
+          >
+            <span class="sr-only">Next week</span>
+            <i class="bx bx-chevron-right" aria-hidden="true"></i>
+          </button>
+        </nav>
+      </header>
+      <section aria-labelledby="calendar-title">
+        <h2 id="calendar-title" class="sr-only"></h2>
+        <table class="calendar__table">
+          <thead class="calendar__thead">
+            <tr>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Monday</div>
+                <div class="calendar__date">14 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Tuesday</div>
+                <div class="calendar__date">15 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Wednesday</div>
+                <div class="calendar__date">16 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Thursday</div>
+                <div class="calendar__date">17 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Friday</div>
+                <div class="calendar__date">18 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Saturday</div>
+                <div class="calendar__date">19 of August</div>
+              </th>
+              <th class="flow" scope="col">
+                <div class="calendar__weekday">Sunday</div>
+                <div class="calendar__date">20 of August</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="calendar__tbody">
+            <tr>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events">
+                  <div class="event" draggable="true">
+                    <p
+                      class="event__description"
+                      contenteditable="true"
+                      role="textbox"
+                      aria-label="Event description"
+                    >
+                      Something
+                    </p>
+                  </div>
+                </div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+              <td class="calendar__day">
+                <div class="events"></div>
+                <button
+                  class="calendar__btn calendar__btn--add-event btn btn--primary"
+                >
+                  <i class="bx bx-plus" aria-hidden="true"></i>
+                  Add Event
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
