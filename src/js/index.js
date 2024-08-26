@@ -1,3 +1,7 @@
+import Calendar from "./views/Calendar";
+
 import "../styles/styles.css";
 
-console.log("test");
+document.addEventListener("DOMContentLoaded", () => {
+  new Calendar();
+});
