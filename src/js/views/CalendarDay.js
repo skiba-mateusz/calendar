@@ -1,9 +1,12 @@
+import CalendarEvent from "./CalendarEvent";
+
 class CalendarDay {
   #date;
 
   constructor(date) {
     this.#date = date;
     this.#initElements();
+    this.#addEventListeners();
   }
 
   #initElements() {
@@ -11,6 +14,23 @@ class CalendarDay {
     this.elements.root = this.#createRoot();
     this.elements.events = this.elements.root.querySelector(".events");
     this.elements.addEventBtn = this.elements.root.querySelector("button");
+  }
+
+  #addEventListeners() {
+    const { addEventBtn } = this.elements;
+
+    addEventBtn.addEventListener("click", this.#onAddEventClick.bind(this));
+  }
+
+  #onAddEventClick() {
+    const eventElement = this.#createEvent(null);
+    eventElement.classList.add("animation-append");
+    this.elements.events.appendChild(eventElement);
+  }
+
+  #createEvent(data, day = this.#date) {
+    const eventElement = new CalendarEvent(data, day).elements.root;
+    return eventElement;
   }
 
   #createRoot() {
