@@ -1,3 +1,4 @@
+import Storage from "../Storage";
 import CalendarEvent from "./CalendarEvent";
 
 class CalendarDay {
@@ -6,6 +7,7 @@ class CalendarDay {
   constructor(date) {
     this.#date = date;
     this.#initElements();
+    this.#loadEvents();
     this.#addEventListeners();
   }
 
@@ -14,6 +16,12 @@ class CalendarDay {
     this.elements.root = this.#createRoot();
     this.elements.events = this.elements.root.querySelector(".events");
     this.elements.addEventBtn = this.elements.root.querySelector("button");
+  }
+
+  #loadEvents() {
+    Storage.getEventsByDate(this.#date).forEach((eventData) => {
+      this.elements.events.appendChild(this.#createEvent(eventData));
+    });
   }
 
   #addEventListeners() {

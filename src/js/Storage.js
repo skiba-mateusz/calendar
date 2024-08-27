@@ -14,6 +14,10 @@ class Storage {
     saveEvents(events);
     return event;
   }
+
+  static getEventsByDate(date) {
+    return loadEvents().filter((event) => event.date === date);
+  }
 }
 
 const loadEvents = () => {
