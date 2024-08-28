@@ -25,6 +25,8 @@ class CalendarEvent {
     const { root, description } = this.elements;
 
     root.addEventListener("dblclick", this.#onDoubleClick.bind(this));
+    root.addEventListener("dragstart", this.#onDragStart.bind(this));
+    description.addEventListener("drop", this.#onDrop.bind(this));
     description.addEventListener("blur", this.#onBlur.bind(this));
     description.addEventListener("focus", this.#onFocus.bind(this));
   }
@@ -66,6 +68,14 @@ class CalendarEvent {
 
   #onFocus(e) {
     e.target.classList.add("event__description--active");
+  }
+
+  #onDragStart(e) {
+    e.dataTransfer.setData("text/plain", this.#data.id);
+  }
+
+  #onDrop(e) {
+    e.preventDefault();
   }
 
   #focusDescriptionIfEmpty() {

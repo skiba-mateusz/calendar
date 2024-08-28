@@ -25,8 +25,11 @@ class CalendarDay {
   }
 
   #addEventListeners() {
-    const { addEventBtn } = this.elements;
+    const { root, addEventBtn } = this.elements;
 
+    root.addEventListener("dragover", this.#onDragOver.bind(this));
+    root.addEventListener("dragleave", this.#onDragLeave.bind(this));
+    root.addEventListener("drop", this.#onDrop.bind(this));
     addEventBtn.addEventListener("click", this.#onAddEventClick.bind(this));
   }
 
@@ -34,6 +37,30 @@ class CalendarDay {
     const eventElement = this.#createEvent(null);
     eventElement.classList.add("animation-append");
     this.elements.events.appendChild(eventElement);
+  }
+
+  #onDrop(e) {
+    e.preventDefault();
+
+    this.elements.root.classList.remove("calendar__day--dragover");
+
+    const eventID = Number(e.dataTransfer.getData("text/plain"));
+    const eventToMove = document.querySelector(`.event[data-id="${eventID}"]`);
+
+    if (!eventToMove && this.elements.root.contains(eventToMove)) return;
+
+    this.elements.events.appendChild(eventToMove);
+
+    Storage.updateEvent(eventID, { date: this.#date });
+  }
+
+  #onDragOver(e) {
+    e.preventDefault();
+    this.elements.root.classList.add("calendar__day--dropzone");
+  }
+
+  #onDragLeave() {
+    this.elements.root.classList.remove("calendar__day--dropzone");
   }
 
   #createEvent(data, day = this.#date) {
