@@ -15,6 +15,20 @@ class Storage {
     return event;
   }
 
+  static updateEvent(eventID, newEvent) {
+    const events = loadEvents();
+    const updatedEvents = events.map((event) =>
+      event.id !== eventID ? event : { ...event, ...newEvent }
+    );
+    saveEvents(updatedEvents);
+  }
+
+  static deleteEvent(eventID) {
+    let events = loadEvents();
+    events = events.filter((event) => event.id !== +eventID);
+    saveEvents(events);
+  }
+
   static getEventsByDate(date) {
     return loadEvents().filter((event) => event.date === date);
   }

@@ -1,4 +1,5 @@
 import Storage from "../Storage";
+import DeleteEvent from "./DeleteEvent";
 
 class CalendarEvent {
   #data;
@@ -21,15 +22,20 @@ class CalendarEvent {
   }
 
   #addEventListeners() {
-    const { description } = this.elements;
+    const { root, description } = this.elements;
 
+    root.addEventListener("dblclick", this.#onDoubleClick.bind(this));
     description.addEventListener("blur", this.#onBlur.bind(this));
     description.addEventListener("focus", this.#onFocus.bind(this));
   }
 
+  #onDoubleClick() {
+    if (!this.#data.id) return;
+    new DeleteEvent(this.#data.id);
+  }
+
   #onBlur(e) {
     const description = e.target.textContent.trim();
-
     e.target.classList.remove("event__description--active");
 
     if (description === this.#data?.description) return;
@@ -51,8 +57,10 @@ class CalendarEvent {
     } else {
       if (!description) {
         this.elements.description.textContent = this.#data.description;
-        console.log("TODO: update");
+        return;
       }
+
+      Storage.updateEvent(this.#data.id, { description });
     }
   }
 
