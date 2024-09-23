@@ -56,6 +56,7 @@ class CalendarEvent {
       this.#data = Storage.createEvent(newEvent);
       this.elements.root.classList.remove("animation-append");
       this.elements.root.setAttribute("data-id", this.#data.id);
+      this.elements.root.style.viewTransitionName = `event-${this.#data.id}`;
     } else {
       if (!description) {
         this.elements.description.textContent = this.#data.description;

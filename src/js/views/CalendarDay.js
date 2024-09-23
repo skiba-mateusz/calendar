@@ -49,7 +49,13 @@ class CalendarDay {
 
     if (!eventToMove && this.elements.root.contains(eventToMove)) return;
 
-    this.elements.events.appendChild(eventToMove);
+    if (document.startViewTransition) {
+      document.startViewTransition(() =>
+        this.elements.events.appendChild(eventToMove)
+      );
+    } else {
+      this.elements.events.appendChild(eventToMove);
+    }
 
     Storage.updateEvent(eventID, { date: this.#date });
   }
