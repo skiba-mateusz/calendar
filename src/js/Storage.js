@@ -1,3 +1,11 @@
+import { formatDate } from "./utils/helpers";
+
+const sampleData = [
+  { id: 1, description: "Try to drag me", date: formatDate(new Date()) },
+  { id: 2, description: "Try to edit me", date: formatDate(new Date()) },
+  { id: 3, description: "Double click on me", date: formatDate(new Date()) },
+];
+
 class Event {
   constructor(description, date) {
     this.id = Math.floor(Math.random() * Date.now());
@@ -35,7 +43,7 @@ class Storage {
 }
 
 const loadEvents = () => {
-  return JSON.parse(localStorage.getItem("events")) ?? [];
+  return JSON.parse(localStorage.getItem("events")) ?? sampleData;
 };
 
 const saveEvents = (events) => {
